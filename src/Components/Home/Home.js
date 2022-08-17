@@ -1,5 +1,6 @@
 import React from 'react';
 import Banner from '../Banner/Banner';
+import PhoneViewPost from './Tab/PhoneViewPost';
 import Post from './Tab/Post';
 
 const Home = () => {
@@ -8,6 +9,7 @@ const Home = () => {
             <Banner />
 
             <Post />
+            <PhoneViewPost />
         </div>
     );
 };

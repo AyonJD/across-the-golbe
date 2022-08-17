@@ -5,7 +5,7 @@
 }
 
 body {
-    overflow-x: hidden;
+    overflow-x: hidden !important;
 }
 
 /* Navbar */
@@ -87,6 +87,10 @@ body {
     background-color: #EDEEF0;
 }
 
+.sub_tabs {
+    overflow-x: hidden !important;
+}
+
 
 
 
@@ -102,10 +106,20 @@ body {
     .navbar {
         display: none;
     }
+
+    .main_tabs {
+        display: none;
+        visibility: hidden;
+    }
 }
 
 @media only screen and (min-width: 992px) {
     .join_group_section {
+        display: none;
+        visibility: hidden;
+    }
+
+    .sub_tabs {
         display: none;
         visibility: hidden;
     }

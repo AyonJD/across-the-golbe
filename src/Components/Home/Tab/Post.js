@@ -6,10 +6,11 @@ const Post = () => {
     const [selectedTab, setSelectedTab] = React.useState('1all');
     // console.log(selectedTab)
     return (
-        <div name='article' className="container mt-5">
+        <div name='article' className="container main_tabs mt-5">
 
             {/* Container */}
             <Tabs
+                className=""
                 setSelectedTab={setSelectedTab}
                 items={[
                     { to: "all", name: "All Posts" },
