@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap');
+
+body {
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+
 * {
     margin: 0;
     padding: 0;
@@ -96,6 +103,25 @@ body {
 }
 
 
+/* Article Section */
+.edit_button {
+    line-height: 10px;
+    cursor: pointer;
+}
+
+/* Author Section */
+.author_section img {
+    width: 40px;
+}
+
+.views {
+    color: gray;
+
+}
+
+.share_button {
+    cursor: pointer;
+}
 
 
 
