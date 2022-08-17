@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { IoMdArrowDropdown } from "react-icons/io";
+import { MdGroupAdd } from 'react-icons/md'
 
 const TabsWrapper = styled.div`
   border-bottom: 1px solid #E0E0E0;
@@ -78,8 +80,16 @@ const Tabs = props => {
 
                     </TabList>
                     <div>
-                        <button className='btn btn-primary'>One</button>
-                        <button className='btn btn-primary'>Two</button>
+                        <button className='btn post_button '>
+                            <div className="d-flex align-items-center">
+                                <span className="me-1">Write a Post</span> <IoMdArrowDropdown className="fs-5"/>
+                            </div>
+                        </button>
+                        <button className='btn btn-primary ms-3'>
+                            <div className="d-flex align-items-center">
+                                <MdGroupAdd className="fs-5"/> <span className="ms-2">Join Group</span>
+                            </div>
+                        </button>
                     </div>
                 </div>
                 <ActiveLine width={width} offset={offset} />

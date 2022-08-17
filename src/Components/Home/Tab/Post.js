@@ -6,7 +6,7 @@ const Post = () => {
     const [selectedTab, setSelectedTab] = React.useState('1all');
     // console.log(selectedTab)
     return (
-        <div name='article' className="container">
+        <div name='article' className="container mt-5">
 
             {/* Container */}
             <Tabs
