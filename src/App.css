@@ -1,3 +1,4 @@
+/* Navbar */
 .navbar-brand,
 .nav_form,
 .nav_option {
@@ -25,3 +26,30 @@
     font-size: 20px;
     color: rgb(94, 94, 94);
 }
+
+/* Banner */
+.banner_section {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(./assets/Rectangle\ 2.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: calc(100vh - 57px);
+}
+
+.banner_text {
+    bottom: 50px;
+    left: 10%;
+}
+
+@media only screen and (min-width: 512px) {
+    .banner_text {
+        left: 100px;
+    }
+}
+
+/* 
+@media only scree and (max-width: 991px) {
+    .banner_section {
+        height: 60vh;
+    }
+} */
