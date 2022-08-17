@@ -1,0 +1,27 @@
+.navbar-brand,
+.nav_form,
+.nav_option {
+    width: 33.33333333%;
+}
+
+.navbar-brand img {
+    cursor: pointer;
+}
+
+.nav_form input {
+    background-color: #F2F2F2;
+}
+
+@media only screen and (max-width: 991px) {
+    .navbar {
+        display: none;
+    }
+}
+
+.search_icon {
+    top: 10px;
+    left: 10px;
+    font-weight: 600;
+    font-size: 20px;
+    color: rgb(94, 94, 94);
+}
