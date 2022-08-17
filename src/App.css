@@ -1,3 +1,13 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow-x: hidden;
+}
+
 /* Navbar */
 .navbar-brand,
 .nav_form,
@@ -11,12 +21,6 @@
 
 .nav_form input {
     background-color: #F2F2F2;
-}
-
-@media only screen and (max-width: 991px) {
-    .navbar {
-        display: none;
-    }
 }
 
 .search_icon {
@@ -38,12 +42,34 @@
 
 .banner_text {
     bottom: 50px;
-    left: 10%;
+    padding: 0 5%;
+}
+
+.join_group_section {
+    padding: 0 5%;
+    width: 100vw;
+}
+
+.join_group_button {
+    margin-left: auto;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    padding: 7px 20px;
+    line-height: 20px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    background: transparent;
 }
 
 @media only screen and (min-width: 512px) {
     .banner_text {
-        left: 100px;
+        padding: 0 100px;
+    }
+
+    .join_group_section {
+        padding: 0 100px;
     }
 }
 
@@ -53,3 +79,30 @@
         height: 60vh;
     }
 } */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media only screen and (max-width: 991px) {
+    .navbar {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .join_group_section {
+        display: none;
+        visibility: hidden;
+    }
+}
