@@ -6,7 +6,7 @@ const Post = () => {
     const [selectedTab, setSelectedTab] = React.useState('1all');
     // console.log(selectedTab)
     return (
-        <div name='article' className="">
+        <div name='article' className="container">
 
             {/* Container */}
             <Tabs
@@ -19,6 +19,7 @@ const Post = () => {
                     { to: "job", name: "Job" }
                 ]}
             />
+
         </div>
     );
 };

@@ -42,42 +42,50 @@ const Tabs = props => {
         setWidth(activeElement.clientWidth);
     }, [selected, activeRef]);
 
-    let projects;
-    if (selected === "article") {
-        projects = "Article";
+    let section;
+    if (selected === "all") {
+        section = 'all';
+    } else if (selected === "article") {
+        section = "Article";
     } else if (selected === "event") {
-        projects = "Event";
+        section = "Event";
     } else if (selected === "education") {
-        projects = "Education";
+        section = "Education";
     } else {
-        projects = "Job"
+        section = "Job"
     }
 
     return (
         <div className="z-0">
             <TabsWrapper>
+                <div className="d-flex justify-content-between">
+                    <TabList>
+                        {props?.items?.map(item => {
+                            return (
+                                <TabItem
+                                    key={item.to}
+                                    ref={selected === item.to ? activeRef : none}
+                                    className={selected === item.to ? "is-active" : ""}
+                                    onClick={() => {
+                                        setSelected(item.to)
+                                        props.setSelectedTab(item.to)
+                                    }}
+                                >
+                                    {item.name}
+                                </TabItem>
+                            );
+                        })}
 
-                <TabList>
-                    {props?.items?.map(item => {
-                        return (
-                            <TabItem
-                                key={item.to}
-                                ref={selected === item.to ? activeRef : none}
-                                className={selected === item.to ? "is-active" : ""}
-                                onClick={() => {
-                                    setSelected(item.to)
-                                    props.setSelectedTab(item.to)
-                                }}
-                            >
-                                {item.name}
-                            </TabItem>
-                        );
-                    })}
-                </TabList>
+                    </TabList>
+                    <div>
+                        <button className='btn btn-primary'>One</button>
+                        <button className='btn btn-primary'>Two</button>
+                    </div>
+                </div>
                 <ActiveLine width={width} offset={offset} />
             </TabsWrapper>
 
-            {projects}
+            {section}
         </div>
     );
 };
