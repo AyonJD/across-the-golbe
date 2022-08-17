@@ -9,6 +9,10 @@ body {
 }
 
 /* Navbar */
+.header {
+    z-index: 100;
+}
+
 .navbar-brand,
 .nav_form,
 .nav_option {
