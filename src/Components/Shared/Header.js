@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../assets/whole.png';
+import Popup from 'reactjs-popup';
+import googleImage from '../../assets/icons8-google.svg';
 
 const Header = () => {
     const navigate = useNavigate()
+    const [open, setOpen] = useState(false);
+    const closeModal = () => setOpen(false);
     return (
         <nav className="navbar navbar-expand-lg shadow-sm bg-white position-sticky top-0 header">
             <div className="container">
@@ -28,15 +32,63 @@ const Header = () => {
                                 It's Free
                             </Link>
                             <ul className="dropdown-menu">
-                                <li><Link className="dropdown-item" to="/create-account">Create Account</Link></li>
+
+                                <li className='dropdown-item' onClick={() => setOpen(o => !o)}>
+                                    Details
+                                </li>
+                                <Popup className="popup_content " open={open} closeOnDocumentClick onClose={closeModal} position="left center">
+
+                                    <div className='bg-light px-4 container pb-4 popup_bg'>
+                                        <p className='signup_top text-center py-3'>Let's learn, share & inspire each other with our passion for computer engineering. Sign up now 🤘🏼</p>
+                                        <div className="row">
+                                            <div className="col-12 col-lg-6">
+                                                <h1>Create Cccount</h1>
+
+                                                <form className='form_radius'>
+                                                    <div class="input-group main_group">
+                                                        <input type="text" placeholder='First Name' aria-label="First name" class="form-control signup_input_group" />
+                                                        <input type="text" placeholder='Last Name' aria-label="Last name" class="form-control signup_input_group" />
+
+                                                        <div class="input-group ">
+                                                            <input class="form-control signup_input_group" type="email" placeholder="Email" aria-label="Email" />
+                                                        </div>
+                                                        <div class="input-group ">
+                                                            <input class="form-control signup_input_group" type="password" placeholder='Password' />
+                                                        </div>
+                                                        <div class="input-group ">
+                                                            <input class="form-control last signup_input_group" type="password" placeholder='Confirm Password' />
+                                                        </div>
+
+                                                        <div className="submit_parent mt-4">
+                                                            <button type='submit' className='btn btn-primary submit_button rounded-pill'>Create Account</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                                <div className="social_login">
+                                                    <div className='d-flex align-items-center px-3 justify-content-center single_login'>
+                                                        <img className=' d-inline-block' src={googleImage} alt="" />
+                                                        <h6 className='mb-0 ms-2 d-inline-block'>Signin with Google</h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="col-12 col-lg-6">
+                                                <p className='text-end'>Already have an account? <span className='text-primary'>Sign In</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </Popup>
+
+                                {/* <li><Link className="dropdown-item" to="/create-account">Create Account</Link></li> */}
                                 <li><Link className="dropdown-item" to="/signin">Sign In</Link></li>
                             </ul>
                         </li>
                     </ul>
 
                 </div>
-            </div>
-        </nav>
+            </div >
+        </nav >
     );
 };
 

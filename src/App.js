@@ -21,6 +21,8 @@ function App() {
         <Header />
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='/create-account' element={<Home />} />
+          <Route path='/signin' element={<Home />} />
         </Routes>
       </articleContext.Provider>
     </div>
