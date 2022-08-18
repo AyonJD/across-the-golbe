@@ -271,6 +271,16 @@ body {
     cursor: pointer;
 }
 
+.pointer {
+    cursor: pointer;
+}
+
+.authUser {
+    width: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
 
 
 
@@ -289,6 +299,10 @@ body {
         gap: 0 !important;
         justify-content: center;
         padding: 0 20px;
+    }
+
+    .popup_bg {
+        max-height: fit-content;
     }
 }
 

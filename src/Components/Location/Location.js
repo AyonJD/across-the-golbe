@@ -36,7 +36,7 @@ const Location = () => {
                     <input type="text" class={`form-control me-3 ${!disable ? "input_border" : "location_input"}`} name="user" id="user" ng-model="userName" disabled={disable} onChange={(e) => setLocation(e.target.value)} value={location} />
                 </div>
                 {/* <label for="user" class="animated-label">{location}</label> */}
-                <BsPencilFill className='focus_button' onClick={() => setDisable(!disable)}>Edit</BsPencilFill>
+                <BsPencilFill className='focus_button pointer' onClick={() => setDisable(!disable)}>Edit</BsPencilFill>
             </div>
         </form>
     );
