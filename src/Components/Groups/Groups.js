@@ -7,7 +7,7 @@ const Groups = () => {
     const data = useContext(articleContext);
     const setHandleGroupState = data.setHandleGroupState;
     useEffect(() => {
-        fetch('http://localhost:5000/groups')
+        fetch('https://still-waters-50260.herokuapp.com/groups')
             .then(res => res.json())
             .then(data => setGroups(data))
     }, [])
