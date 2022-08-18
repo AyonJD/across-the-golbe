@@ -4,6 +4,8 @@ import { useEffect } from 'react';
 import { articleContext } from '../../App';
 import { AiOutlineEye } from 'react-icons/ai';
 import { BsShareFill } from 'react-icons/bs';
+import { RiErrorWarningLine } from 'react-icons/ri';
+import Location from '../Location/Location';
 
 const Articles = () => {
     const articles = useContext(articleContext);
@@ -17,8 +19,8 @@ const Articles = () => {
     }, [])
 
     return (
-        <div className='container'>
-            <div className='row'>
+        <div className='container mt-3'>
+            <div className='row gap-5'>
                 <div className="col-12 col-md-7">
                     {
                         articles.map(article => {
@@ -44,7 +46,7 @@ const Articles = () => {
                                                     <AiOutlineEye className='views' />
                                                     <span className='ms-1 views'>{article?.view} views</span>
                                                 </div>
-                                                <BsShareFill title='Share this article' className='ms-5 share_button' />
+                                                <BsShareFill title='Share this article' className='ms-3 share_button' />
                                             </div>
                                         </div>
                                     </div>
@@ -54,8 +56,12 @@ const Articles = () => {
                         })
                     }
                 </div>
-                <div className="col-12 col-md-4">
-
+                <div className="col-12 col-md-4 ms-auto">
+                    <Location />
+                    <div className='d-flex width_control'>
+                        <RiErrorWarningLine className='warning_icon' />
+                        <p className='location_details'>Your location will help us serve better and extend a personalised experience.</p>
+                    </div>
                 </div>
             </div>
 

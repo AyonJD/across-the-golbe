@@ -124,10 +124,85 @@ body {
 }
 
 
+/* Location */
+.btn.btn-xs.btn-success {
+    display: none;
+    visibility: hidden;
+}
 
+/* Location form*/
+.custom-form {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    max-width: 360px;
+    background: #fff;
+    border-radius: 4px;
+}
 
+.custom-form .btn-primary {
+    background-color: #8e44ad;
+    border-color: #8e44ad;
+}
 
+.custom-form .form-group {
+    position: relative;
+    padding-top: 16px;
+    margin-bottom: 16px;
+}
 
+.location_input {
+    position: relative;
+    z-index: 1;
+    border-radius: 0;
+    border-width: 0 0 1px;
+    border-bottom-color: rgba(0, 0, 0, 0.25);
+    height: auto;
+    padding: 3px 0 5px;
+    color: gray;
+    padding-left: 35px;
+    padding-right: 35px;
+}
+
+.input_border {
+    position: relative;
+    z-index: 1;
+    border-radius: 0;
+    border-width: 0 0 1px;
+    border-bottom-color: rgb(0, 0, 0);
+    height: auto;
+    padding: 3px 0 5px;
+    padding-left: 35px;
+    padding-right: 35px;
+}
+
+.location_mark {
+    top: 27px;
+    z-index: 10;
+    left: 5px;
+}
+
+.focus_button {
+    margin-top: 20px;
+    margin-left: -25px;
+    z-index: 2;
+}
+
+.warning_icon {
+    font-size: 33px;
+    color: gray;
+    margin-right: 10px;
+}
+
+.location_details {
+    color: gray;
+}
+
+.width_control {
+    max-width: 273px;
+    margin-right: 0;
+    margin-left: auto;
+}
 
 
 
