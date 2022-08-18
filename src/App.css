@@ -259,8 +259,17 @@ body {
 
 .popup_bg {
     border-radius: 15px;
+    max-height: 80vh;
+    margin-top: 20px;
 }
 
+.gif {
+    margin-top: -80px;
+}
+
+.dropdown-item {
+    cursor: pointer;
+}
 
 
 
