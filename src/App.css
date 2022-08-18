@@ -204,6 +204,14 @@ body {
     margin-left: auto;
 }
 
+.making_responsive_gap {
+    gap: 3rem !important;
+}
+
+.hide_on_mobile {
+    top: 40px;
+}
+
 
 
 
@@ -212,9 +220,16 @@ body {
         display: none;
     }
 
-    .main_tabs {
+    .main_tabs,
+    .hide_on_mobile {
         display: none;
         visibility: hidden;
+    }
+
+    .making_responsive_gap {
+        gap: 0 !important;
+        justify-content: center;
+        padding: 0 20px;
     }
 }
 

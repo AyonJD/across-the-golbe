@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { articleContext } from '../../../App';
+import Articles from '../../Articles/Articles';
 
 const PhoneViewPost = () => {
     const articles = useContext(articleContext);
@@ -16,6 +17,8 @@ const PhoneViewPost = () => {
                     </select>
                 </div>
             </div>
+
+            <Articles />
         </div>
     );
 };

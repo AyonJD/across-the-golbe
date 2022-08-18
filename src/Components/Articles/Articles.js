@@ -20,7 +20,7 @@ const Articles = () => {
 
     return (
         <div className='container mt-3'>
-            <div className='row gap-5'>
+            <div className='row making_responsive_gap'>
                 <div className="col-12 col-md-7">
                     {
                         articles.map(article => {
@@ -56,7 +56,7 @@ const Articles = () => {
                         })
                     }
                 </div>
-                <div className="col-12 col-md-4 ms-auto">
+                <div className="col-12 col-md-4 ms-auto hide_on_mobile position-sticky">
                     <Location />
                     <div className='d-flex width_control'>
                         <RiErrorWarningLine className='warning_icon' />
