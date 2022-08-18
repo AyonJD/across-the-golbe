@@ -3,7 +3,8 @@ import { articleContext } from '../../../App';
 import Articles from '../../Articles/Articles';
 
 const PhoneViewPost = () => {
-    const articles = useContext(articleContext);
+    const data = useContext(articleContext);
+    const articles = data.articles;
     return (
         <div name='phone-article' className="container sub_tabs mt-5">
             <div className='row'>

@@ -7,6 +7,7 @@ import { createContext, useEffect, useState } from 'react';
 const articleContext = createContext();
 function App() {
   const [articles, setArticles] = useState([]);
+  const [handleGroupState, setHandleGroupState] = useState(false);
 
   useEffect(() => {
     fetch('https://still-waters-50260.herokuapp.com/articles')
@@ -14,10 +15,16 @@ function App() {
       .then(data => setArticles(data))
   }, [])
 
+  const data = {
+    articles,
+    handleGroupState,
+    setHandleGroupState
+  }
+
 
   return (
     <div>
-      <articleContext.Provider value={articles}>
+      <articleContext.Provider value={data}>
         <Header />
         <Routes>
           <Route path='/' element={<Home />} />

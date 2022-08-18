@@ -6,10 +6,14 @@ import { AiOutlineEye } from 'react-icons/ai';
 import { BsShareFill } from 'react-icons/bs';
 import { RiErrorWarningLine } from 'react-icons/ri';
 import Location from '../Location/Location';
+import Groups from '../Groups/Groups';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
 
 const Articles = () => {
-    const articles = useContext(articleContext);
-    console.log(articles)
+    const data = useContext(articleContext);
+    const articles = data.articles;
+    const user = useAuthState(auth)
 
     useEffect(() => {
         document.addEventListener("DOMContentLoaded", () => {
@@ -62,6 +66,10 @@ const Articles = () => {
                         <RiErrorWarningLine className='warning_icon' />
                         <p className='location_details'>Your location will help us serve better and extend a personalised experience.</p>
                     </div>
+
+                    {
+                        user[0] && <Groups />
+                    }
                 </div>
             </div>
 

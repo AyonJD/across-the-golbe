@@ -11,7 +11,6 @@ const Location = () => {
     useEffect(() => {
         navigator.geolocation.getCurrentPosition((position) => {
             const p = position.coords;
-            console.log(p.latitude, p.longitude);
 
             // Get my location using google maps api
             return fetch(`https://nominatim.openstreetmap.org/reverse?lat=${p.latitude}&lon=${p.longitude}`)

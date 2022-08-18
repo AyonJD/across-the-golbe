@@ -5,7 +5,8 @@ import Tabs from './Tabs';
 
 const Post = () => {
     const [selectedTab, setSelectedTab] = React.useState('1all');
-    const articles = useContext(articleContext);
+    const data = useContext(articleContext);
+    const articles = data.articles;
     const allPost = `All Posts (${articles?.length})`;
     // console.log(selectedTab)
     return (
