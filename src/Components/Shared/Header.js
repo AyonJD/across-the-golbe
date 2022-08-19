@@ -9,6 +9,7 @@ import { useForm } from 'react-hook-form';
 import auth from '../../firebase.init';
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile, useAuthState } from 'react-firebase-hooks/auth';
 import { signOut } from 'firebase/auth';
+import toast from 'react-hot-toast';
 
 const Header = () => {
 
@@ -148,16 +149,16 @@ const Header = () => {
                                                                     <div class="input-group ">
                                                                         <input class="form-control signup_input_group" type="password" placeholder='Password'
                                                                             {...register('password', {
-                                                                                required: 'Password is required',
-                                                                                pattern: {
-                                                                                    value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
-                                                                                    message: "Minimum eight characters, at least one uppercase and one number"
+                                                                                minLength: {
+                                                                                    value: 3, message: 'Minimum 3 character required'
                                                                                 }
                                                                             })}
                                                                             onKeyUp={() => {
                                                                                 trigger('password')
                                                                             }}
                                                                         />
+
+
                                                                     </div>
                                                                     <div class="input-group ">
                                                                         <input class="form-control last signup_input_group" type="password" placeholder='Confirm Password'

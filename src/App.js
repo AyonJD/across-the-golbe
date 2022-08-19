@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import Home from './Components/Home/Home';
 import Header from './Components/Shared/Header';
 import { createContext, useEffect, useState } from 'react';
+import { Toaster } from 'react-hot-toast';
 
 const articleContext = createContext();
 function App() {
@@ -32,6 +33,7 @@ function App() {
           <Route path='/signin' element={<Home />} />
         </Routes>
       </articleContext.Provider>
+      <Toaster />
     </div>
   );
 }
