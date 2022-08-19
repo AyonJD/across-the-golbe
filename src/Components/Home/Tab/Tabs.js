@@ -41,7 +41,7 @@ const Tabs = props => {
     const [offset, setOffset] = React.useState(0);
     const [width, setWidth] = React.useState(0);
     const data = useContext(articleContext);
-    const handleGroupState = data.handleGroupState;
+    const { handleGroupState, setHandleGroupState } = data;
 
     React.useEffect(() => {
 
@@ -94,7 +94,7 @@ const Tabs = props => {
 
                         {
                             handleGroupState ? (
-                                <button className='btn btn-secondary ms-3'>
+                                <button onClick={() => setHandleGroupState(false)} className='btn btn-secondary ms-3'>
                                     <div className="d-flex align-items-center">
                                         <BsBoxArrowLeft className="fs-5" /> <span className="ms-2">Leave Group</span>
                                     </div>
