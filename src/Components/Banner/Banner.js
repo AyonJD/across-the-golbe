@@ -3,11 +3,20 @@ import { FaArrowLeft } from 'react-icons/fa';
 import Popup from 'reactjs-popup';
 import googleImage from '../../assets/icons8-google.svg';
 import gitImage from '../../assets/gid.gif';
+import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
 
 const Banner = () => {
     const [open, setOpen] = useState(false);
     const closeModal = () => setOpen(false);
     const [openTwo, setOpenTwo] = useState(false);
+    const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+
+    const handleGoogleSigning = async () => {
+        await signInWithGoogle();
+        setOpenTwo(false);
+        setOpen(false);
+    }
     return (
         <div className='banner_section position-relative'>
             <div className="join_group_section position-absolute d-flex align-items-center pt-5">
@@ -45,7 +54,7 @@ const Banner = () => {
                                 </div>
                             </form>
                             <div className="social_login">
-                                <div className='d-flex align-items-center px-3 bg-white justify-content-center single_login'>
+                                <div onClick={() => handleGoogleSigning()} className='d-flex align-items-center px-3 bg-white justify-content-center single_login'>
                                     <img className=' d-inline-block' src={googleImage} alt="" />
                                     <h6 className='mb-0 ms-2 d-inline-block'>Signin with Google</h6>
                                 </div>
@@ -90,7 +99,7 @@ const Banner = () => {
                                 </div>
                             </form>
                             <div className="social_login">
-                                <div className='d-flex align-items-center px-3 justify-content-center single_login'>
+                                <div onClick={() => handleGoogleSigning()} className='d-flex align-items-center px-3 justify-content-center single_login'>
                                     <img className=' d-inline-block' src={googleImage} alt="" />
                                     <h6 className='mb-0 ms-2 d-inline-block'>Signin with Google</h6>
                                 </div>

@@ -9,7 +9,6 @@ import { useForm } from 'react-hook-form';
 import auth from '../../firebase.init';
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile, useAuthState } from 'react-firebase-hooks/auth';
 import { signOut } from 'firebase/auth';
-import toast from 'react-hot-toast';
 
 const Header = () => {
 
@@ -45,7 +44,7 @@ const Header = () => {
         setOpenTwo(false);
         setOpen(false);
     }
-    console.log(authUser);
+    // console.log(authUser);
 
     return (
         <nav className="navbar navbar-expand-lg shadow-sm bg-white position-sticky top-0 header">
@@ -230,7 +229,7 @@ const Header = () => {
                                                                 </div>
                                                             </form>
                                                             <div className="social_login">
-                                                                <div className='d-flex align-items-center px-3 justify-content-center single_login'>
+                                                                <div onClick={() => handleGoogleSigning()} className='d-flex align-items-center px-3 justify-content-center single_login'>
                                                                     <img className=' d-inline-block' src={googleImage} alt="" />
                                                                     <h6 className='mb-0 ms-2 d-inline-block'>Signin with Google</h6>
                                                                 </div>
