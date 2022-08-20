@@ -16,14 +16,10 @@ const Header = () => {
     const [open, setOpen] = useState(false);
     const [openTwo, setOpenTwo] = useState(false);
     const closeModal = () => setOpen(false);
+    const [user, setUser] = useState({});
     const [userName, setUserName] = useState('');
     const { register, formState: { errors }, handleSubmit, trigger, reset } = useForm();
-    const [
-        createUserWithEmailAndPassword,
-        user,
-        loading,
-        error,
-    ] = useCreateUserWithEmailAndPassword(auth);
+
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
     const [updateProfile, updating, error1] = useUpdateProfile(auth);
     const authUser = useAuthState(auth);
@@ -31,10 +27,6 @@ const Header = () => {
     const onSubmit = async data => {
         const displayName = `${data.fName} ${data.lName}`;
         setUserName(displayName);
-        // await createUserWithEmailAndPassword(data.email, data.password)
-        // await updateProfile({ displayName })
-        setOpenTwo(false);
-        setOpen(false);
 
         //POST a new user to the database
         const user = {
@@ -52,15 +44,16 @@ const Header = () => {
         })
             .then(res => res.json())
             .then(data => {
-                if (data.result === 'User already exists') {
-                    toast.error(data.result);
+                if (data.message === 'User already exists') {
+                    toast.error(data.message);
                 } else {
-                    toast.success(data.result);
+                    toast.success(data.message);
+                    setUser(data.user)
+                    reset();
+                    setOpenTwo(false);
+                    setOpen(false);
                 }
             })
-
-
-        reset();
     }
 
     const handleGoogleSigning = async () => {
