@@ -4,6 +4,7 @@ import Home from './Components/Home/Home';
 import Header from './Components/Shared/Header';
 import { createContext, useEffect, useState } from 'react';
 import { Toaster } from 'react-hot-toast';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const articleContext = createContext();
 function App() {

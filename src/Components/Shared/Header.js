@@ -10,8 +10,11 @@ import auth from '../../firebase.init';
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile, useAuthState } from 'react-firebase-hooks/auth';
 import { signOut } from 'firebase/auth';
 import toast from 'react-hot-toast';
+import ResetPass from './ResetPass';
 
 const Header = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const navigate = useNavigate()
     const [open, setOpen] = useState(false);
     const [openTwo, setOpenTwo] = useState(false);
@@ -24,6 +27,7 @@ const Header = () => {
     const [updateProfile, updating, error1] = useUpdateProfile(auth);
     const authUser = useAuthState(auth);
 
+    //Handle signup with email and password
     const onSubmit = async data => {
         const displayName = `${data.fName} ${data.lName}`;
         setUserName(displayName);
@@ -55,6 +59,33 @@ const Header = () => {
                 }
             })
     }
+
+    //Handle login with email and password
+    const handleLogin = e => {
+        e.preventDefault();
+        if (email === '' || password === '') {
+            toast.error('Please fill out all fields');
+            return
+        }
+
+        fetch(`http://localhost:5000/users/${email}`)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (data.password !== password) {
+                    toast.error('Incorrect password');
+                } else if (data.message === 'User not found') {
+                    toast.error(data.message);
+                } else {
+                    toast.success('Logged in successfully');
+                    setUser(data.user);
+                    setOpen(false);
+                    setOpenTwo(false);
+                }
+            })
+    }
+
+    
 
     const handleGoogleSigning = async () => {
         await signInWithGoogle();
@@ -216,8 +247,6 @@ const Header = () => {
 
                                             </Popup>
 
-                                            {/* <li><Link className="dropdown-item" to="/create-account">Create Account</Link></li> */}
-
 
                                             <li className='dropdown-item' onClick={() => setOpenTwo(o => !o)}>
                                                 Sign In
@@ -230,30 +259,43 @@ const Header = () => {
                                                         <div className="col-12 col-lg-6">
                                                             <h1>Sign In</h1>
 
-                                                            <form className='form_radius'>
+                                                            <form onClick={(e) => handleLogin(e)} className='form_radius'>
                                                                 <div class="input-group main_group">
 
-                                                                    <div class="input-group ">
-                                                                        <input class="form-control signup_input_group" type="email" placeholder="Email" aria-label="Email" />
-                                                                    </div>
-                                                                    <div class="input-group ">
-                                                                        <input class="form-control signup_input_group last" type="password" placeholder='Password' />
-                                                                    </div>
 
+
+                                                                    <div class="input-group ">
+                                                                        <input class="form-control signup_input_group" type="email" placeholder="Email" aria-label="Email"
+                                                                            onKeyUp={(e) => {
+                                                                                setEmail(e.target.value)
+                                                                            }}
+                                                                        />
+                                                                    </div>
+                                                                    <div class="input-group ">
+                                                                        <input class="last form-control signup_input_group" type="password" placeholder='Password'
+                                                                            onKeyUp={(e) => {
+                                                                                setPassword(e.target.value)
+                                                                            }}
+                                                                        />
+
+
+                                                                    </div>
 
                                                                     <div className="submit_parent mt-4">
                                                                         <button type='submit' className='btn btn-primary submit_button rounded-pill'>Sign In</button>
                                                                     </div>
-
                                                                 </div>
                                                             </form>
+
                                                             <div className="social_login">
                                                                 <div onClick={() => handleGoogleSigning()} className='d-flex align-items-center px-3 justify-content-center single_login'>
                                                                     <img className=' d-inline-block' src={googleImage} alt="" />
                                                                     <h6 className='mb-0 ms-2 d-inline-block'>Signin with Google</h6>
                                                                 </div>
                                                             </div>
-                                                            <p className='text-primary text-center mt-3 pointer'>Forget Password</p>
+                                                            {/* <p onClick={handleForgetPassword} className='text-primary text-center mt-3 pointer'>Forget Password</p> */}
+
+
                                                         </div>
                                                         <div className="col-12 col-lg-6">
                                                             <p className='text-end'>Don't have an account? <span className='text-primary'>Sign Up</span></p>
@@ -264,6 +306,10 @@ const Header = () => {
                                                 </div>
 
                                             </Popup>
+                                            <li className="dropdown-item">
+                                                <ResetPass />
+                                            </li>
+
                                         </ul>
                                     </li>
 
