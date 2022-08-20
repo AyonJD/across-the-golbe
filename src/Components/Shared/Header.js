@@ -9,10 +9,9 @@ import { useForm } from 'react-hook-form';
 import auth from '../../firebase.init';
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile, useAuthState } from 'react-firebase-hooks/auth';
 import { signOut } from 'firebase/auth';
+import toast from 'react-hot-toast';
 
 const Header = () => {
-
-
     const navigate = useNavigate()
     const [open, setOpen] = useState(false);
     const [openTwo, setOpenTwo] = useState(false);
@@ -32,10 +31,35 @@ const Header = () => {
     const onSubmit = async data => {
         const displayName = `${data.fName} ${data.lName}`;
         setUserName(displayName);
-        await createUserWithEmailAndPassword(data.email, data.password)
-        await updateProfile({ displayName })
+        // await createUserWithEmailAndPassword(data.email, data.password)
+        // await updateProfile({ displayName })
         setOpenTwo(false);
         setOpen(false);
+
+        //POST a new user to the database
+        const user = {
+            name: displayName,
+            email: data.email,
+            password: data.password,
+            createdAt: new Date().toISOString(),
+        };
+        fetch(`http://localhost:5000/users/${data.email}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(user),
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.result === 'User already exists') {
+                    toast.error(data.result);
+                } else {
+                    toast.success(data.result);
+                }
+            })
+
+
         reset();
     }
 
@@ -148,8 +172,10 @@ const Header = () => {
                                                                     <div class="input-group ">
                                                                         <input class="form-control signup_input_group" type="password" placeholder='Password'
                                                                             {...register('password', {
-                                                                                minLength: {
-                                                                                    value: 3, message: 'Minimum 3 character required'
+                                                                                required: 'Password is required',
+                                                                                pattern: {
+                                                                                    value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
+                                                                                    message: "Minimum eight characters, at least one uppercase and one number"
                                                                                 }
                                                                             })}
                                                                             onKeyUp={() => {
