@@ -173,14 +173,17 @@ body {
     border-bottom-color: rgb(0, 0, 0);
     height: auto;
     padding: 3px 0 5px;
-    padding-left: 35px;
     padding-right: 35px;
+}
+
+.location_input {
+    padding-left: 35px !important;
 }
 
 .location_mark {
     top: 27px;
     z-index: 10;
-    left: 5px;
+    left: 10px;
 }
 
 .focus_button {

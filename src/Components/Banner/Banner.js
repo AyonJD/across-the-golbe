@@ -33,18 +33,18 @@ const Banner = () => {
                             <h1>Create Cccount</h1>
 
                             <form className='form_radius'>
-                                <div class="input-group main_group">
-                                    <input type="text" placeholder='First Name' aria-label="First name" class="form-control signup_input_group" />
-                                    <input type="text" placeholder='Last Name' aria-label="Last name" class="form-control signup_input_group" />
+                                <div className="input-group main_group">
+                                    <input type="text" placeholder='First Name' aria-label="First name" className="form-control signup_input_group" />
+                                    <input type="text" placeholder='Last Name' aria-label="Last name" className="form-control signup_input_group" />
 
-                                    <div class="input-group ">
-                                        <input class="form-control signup_input_group" type="email" placeholder="Email" aria-label="Email" />
+                                    <div className="input-group ">
+                                        <input className="form-control signup_input_group" type="email" placeholder="Email" aria-label="Email" />
                                     </div>
-                                    <div class="input-group ">
-                                        <input class="form-control signup_input_group" type="password" placeholder='Password' />
+                                    <div className="input-group ">
+                                        <input className="form-control signup_input_group" type="password" placeholder='Password' />
                                     </div>
-                                    <div class="input-group ">
-                                        <input class="form-control last signup_input_group" type="password" placeholder='Confirm Password' />
+                                    <div className="input-group ">
+                                        <input className="form-control last signup_input_group" type="password" placeholder='Confirm Password' />
                                     </div>
 
                                     <div className="mt-4 w-100 d-flex align-items-center justify-content-between">
@@ -81,13 +81,13 @@ const Banner = () => {
                             <h1>Sign In</h1>
 
                             <form className='form_radius'>
-                                <div class="input-group main_group">
+                                <div className="input-group main_group">
 
-                                    <div class="input-group ">
-                                        <input class="form-control signup_input_group" type="email" placeholder="Email" aria-label="Email" />
+                                    <div className="input-group ">
+                                        <input className="form-control signup_input_group" type="email" placeholder="Email" aria-label="Email" />
                                     </div>
-                                    <div class="input-group ">
-                                        <input class="form-control signup_input_group last" type="password" placeholder='Password' />
+                                    <div className="input-group ">
+                                        <input className="form-control signup_input_group last" type="password" placeholder='Password' />
                                     </div>
 
 

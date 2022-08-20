@@ -64,7 +64,7 @@ function ResetPass() {
                             }}
                         />
 
-                        <input class="form-control signup_input_group py-2" type="password" placeholder='Password'
+                        <input className="form-control signup_input_group py-2" type="password" placeholder='Password'
                             onKeyUp={(e) => {
                                 setPassword(e.target.value)
                             }}

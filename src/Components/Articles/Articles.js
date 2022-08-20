@@ -14,6 +14,7 @@ const Articles = () => {
     const data = useContext(articleContext);
     const articles = data.articles;
     const user = useAuthState(auth)
+    const articleCopy = [...articles];
 
     useEffect(() => {
         document.addEventListener("DOMContentLoaded", () => {
@@ -27,12 +28,12 @@ const Articles = () => {
             <div className='row making_responsive_gap'>
                 <div className="col-12 col-md-7">
                     {
-                        articles.map(article => {
+                        articleCopy?.reverse().map(article => {
                             return (
-                                <div key={article?._id} className="card">
+                                <div key={article?._id} className="card my-4">
                                     <img src={article?.img} className="card-img-top" alt="..." />
                                     <div className="card-body">
-                                        <span class="badge text-bg-primary">{article?.Category}</span>
+                                        <span className="badge text-bg-primary">{article?.Category}</span>
                                         <div className="d-flex justify-content-between align-items-denter">
                                             <h4 className='card-title mt-1 d-inline-block' title={article?.Title}>{article?.Title?.slice(0, 45)}{article?.Title?.length > 45 && "..."}</h4>
                                             <h2 title='Edit' className='d-inline-block edit_button ms-3'>...</h2>
@@ -41,7 +42,7 @@ const Articles = () => {
 
                                         <div className="author_section d-flex justify-content-between align-items-center">
                                             <div className="main_author d-flex align-items-center">
-                                                <img className='' src={article?.author?.authorImage} alt="" />
+                                                <img className='rounded-circle' src={article?.author?.authorImage} alt="" />
                                                 <h6 className='ms-3 fw-bold'>{article?.author?.name}</h6>
                                             </div>
 

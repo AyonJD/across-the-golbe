@@ -7,7 +7,7 @@ import googleImage from '../../assets/icons8-google.svg';
 import gitImage from '../../assets/gid.gif';
 import { useForm } from 'react-hook-form';
 import auth from '../../firebase.init';
-import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile, useAuthState } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useAuthState, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { signOut } from 'firebase/auth';
 import toast from 'react-hot-toast';
 import ResetPass from './ResetPass';
@@ -23,19 +23,22 @@ const Header = () => {
     const [userName, setUserName] = useState('');
     const { register, formState: { errors }, handleSubmit, trigger, reset } = useForm();
 
-    const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
-    const [updateProfile, updating, error1] = useUpdateProfile(auth);
+    const [signInWithGoogle, , , ,] = useSignInWithGoogle(auth);
+    const [createUserWithEmailAndPassword, , , ,] = useCreateUserWithEmailAndPassword(auth);
+    const [signInWithEmailAndPassword, , , ,] = useSignInWithEmailAndPassword(auth);
     const authUser = useAuthState(auth);
 
     //Handle signup with email and password
     const onSubmit = async data => {
         const displayName = `${data.fName} ${data.lName}`;
         setUserName(displayName);
+        createUserWithEmailAndPassword(data.email, data.password)
 
         //POST a new user to the database
         const user = {
             name: displayName,
             email: data.email,
+            authorImage: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png",
             password: data.password,
             createdAt: new Date().toISOString(),
         };
@@ -63,6 +66,7 @@ const Header = () => {
     //Handle login with email and password
     const handleLogin = e => {
         e.preventDefault();
+        signInWithEmailAndPassword(email, password)
         if (email === '' || password === '') {
             toast.error('Please fill out all fields');
             return
@@ -85,7 +89,7 @@ const Header = () => {
             })
     }
 
-    
+
 
     const handleGoogleSigning = async () => {
         await signInWithGoogle();
@@ -115,8 +119,8 @@ const Header = () => {
                         {
                             authUser[0]?.email ? (
                                 <div className="d-flex align-items-center">
-                                    <img className='authUser' src={"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
-                                    } alt="" />
+                                    <img className='authUser' src={user?.authorImage
+                                    } alt="" /> <span>{user?.name}</span>
 
 
                                     <li className="nav-item dropdown">
@@ -153,8 +157,8 @@ const Header = () => {
                                                             <h1>Create Cccount</h1>
 
                                                             <form onClick={handleSubmit(onSubmit)} className='form_radius'>
-                                                                <div class="input-group main_group">
-                                                                    <input type="text" placeholder='First Name' aria-label="First name" class="form-control signup_input_group"
+                                                                <div className="input-group main_group">
+                                                                    <input type="text" placeholder='First Name' aria-label="First name" className="form-control signup_input_group"
                                                                         {...register("fName", {
                                                                             required: true,
                                                                             minLength: {
@@ -166,7 +170,7 @@ const Header = () => {
                                                                             trigger('fName')
                                                                         }}
                                                                     />
-                                                                    <input type="text" placeholder='Last Name' aria-label="Last name" class="form-control signup_input_group"
+                                                                    <input type="text" placeholder='Last Name' aria-label="Last name" className="form-control signup_input_group"
                                                                         {...register("lName", {
                                                                             required: true,
                                                                             minLength: {
@@ -179,8 +183,8 @@ const Header = () => {
                                                                         }}
                                                                     />
 
-                                                                    <div class="input-group ">
-                                                                        <input class="form-control signup_input_group" type="email" placeholder="Email" aria-label="Email"
+                                                                    <div className="input-group ">
+                                                                        <input className="form-control signup_input_group" type="email" placeholder="Email" aria-label="Email"
                                                                             {...register("email", {
                                                                                 required: 'Email is required',
                                                                                 pattern: {
@@ -193,8 +197,8 @@ const Header = () => {
                                                                             }}
                                                                         />
                                                                     </div>
-                                                                    <div class="input-group ">
-                                                                        <input class="form-control signup_input_group" type="password" placeholder='Password'
+                                                                    <div className="input-group ">
+                                                                        <input className="form-control signup_input_group" type="password" placeholder='Password'
                                                                             {...register('password', {
                                                                                 required: 'Password is required',
                                                                                 pattern: {
@@ -209,8 +213,8 @@ const Header = () => {
 
 
                                                                     </div>
-                                                                    <div class="input-group ">
-                                                                        <input class="form-control last signup_input_group" type="password" placeholder='Confirm Password'
+                                                                    <div className="input-group ">
+                                                                        <input className="form-control last signup_input_group" type="password" placeholder='Confirm Password'
                                                                             {...register('Cpassword', {
                                                                                 required: 'Password is required',
                                                                                 pattern: {
@@ -260,19 +264,19 @@ const Header = () => {
                                                             <h1>Sign In</h1>
 
                                                             <form onClick={(e) => handleLogin(e)} className='form_radius'>
-                                                                <div class="input-group main_group">
+                                                                <div className="input-group main_group">
 
 
 
-                                                                    <div class="input-group ">
-                                                                        <input class="form-control signup_input_group" type="email" placeholder="Email" aria-label="Email"
+                                                                    <div className="input-group ">
+                                                                        <input className="form-control signup_input_group" type="email" placeholder="Email" aria-label="Email"
                                                                             onKeyUp={(e) => {
                                                                                 setEmail(e.target.value)
                                                                             }}
                                                                         />
                                                                     </div>
-                                                                    <div class="input-group ">
-                                                                        <input class="last form-control signup_input_group" type="password" placeholder='Password'
+                                                                    <div className="input-group ">
+                                                                        <input className="last form-control signup_input_group" type="password" placeholder='Password'
                                                                             onKeyUp={(e) => {
                                                                                 setPassword(e.target.value)
                                                                             }}

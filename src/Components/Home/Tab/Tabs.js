@@ -5,6 +5,7 @@ import { MdGroupAdd } from 'react-icons/md'
 import Articles from "../../Articles/Articles";
 import { articleContext } from "../../../App";
 import { BsBoxArrowLeft } from "react-icons/bs";
+import { useNavigate } from 'react-router-dom';
 
 const TabsWrapper = styled.div`
   border-bottom: 1px solid #E0E0E0;
@@ -42,6 +43,7 @@ const Tabs = props => {
     const [width, setWidth] = React.useState(0);
     const data = useContext(articleContext);
     const { handleGroupState, setHandleGroupState } = data;
+    const navigate = useNavigate();
 
     React.useEffect(() => {
 
@@ -86,7 +88,7 @@ const Tabs = props => {
 
                     </TabList>
                     <div>
-                        <button className='btn post_button '>
+                        <button onClick={() => navigate('/create-post')} className='btn post_button '>
                             <div className="d-flex align-items-center">
                                 <span className="me-1">Write a Post</span> <IoMdArrowDropdown className="fs-5" />
                             </div>
