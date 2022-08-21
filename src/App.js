@@ -15,6 +15,7 @@ function App() {
   const [signedInUser, setSignedInUser] = useState({});
   const authUser = useAuthState(auth);
   const [handleGroupState, setHandleGroupState] = useState(false);
+  const [articleId, setArticleId] = useState(null);
 
 
   useEffect(() => {
@@ -28,7 +29,7 @@ function App() {
       .then(res => res.json())
       .then(data => {
         const user = data.find(user => {
-          if (data?.email === authUser[0]?.email) {
+          if (user?.email === authUser[0]?.email) {
             return user;
           }
         })
@@ -41,7 +42,9 @@ function App() {
     articles,
     handleGroupState,
     setHandleGroupState,
-    signedInUser
+    signedInUser,
+    articleId,
+    setArticleId
   }
 
 

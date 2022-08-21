@@ -340,6 +340,10 @@ body {
     border-radius: 20px;
 }
 
+li {
+    list-style: none;
+}
+
 
 
 @media only screen and (max-width: 991px) {

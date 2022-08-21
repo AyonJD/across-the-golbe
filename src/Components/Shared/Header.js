@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../assets/whole.png';
@@ -7,12 +7,15 @@ import googleImage from '../../assets/icons8-google.svg';
 import gitImage from '../../assets/gid.gif';
 import { useForm } from 'react-hook-form';
 import auth from '../../firebase.init';
-import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useAuthState, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useAuthState, useSignInWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { signOut } from 'firebase/auth';
 import toast from 'react-hot-toast';
 import ResetPass from './ResetPass';
+import { articleContext } from '../../App';
 
 const Header = () => {
+    const data = useContext(articleContext);
+    const { signedInUser } = data;
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate()
@@ -27,12 +30,14 @@ const Header = () => {
     const [createUserWithEmailAndPassword, , , ,] = useCreateUserWithEmailAndPassword(auth);
     const [signInWithEmailAndPassword, , , ,] = useSignInWithEmailAndPassword(auth);
     const authUser = useAuthState(auth);
+    const [updateProfile, updating, error] = useUpdateProfile(auth);
 
     //Handle signup with email and password
     const onSubmit = async data => {
         const displayName = `${data.fName} ${data.lName}`;
         setUserName(displayName);
-        createUserWithEmailAndPassword(data.email, data.password)
+        await createUserWithEmailAndPassword(data.email, data.password);
+        await updateProfile({ displayName, photoURL: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" })
 
         //POST a new user to the database
         const user = {
@@ -119,8 +124,8 @@ const Header = () => {
                         {
                             authUser[0]?.email ? (
                                 <div className="d-flex align-items-center">
-                                    <img className='authUser' src={user?.authorImage
-                                    } alt="" /> <span>{user?.name}</span>
+                                    <img className='authUser' src={authUser[0]?.photoURL
+                                    } alt="" />
 
 
                                     <li className="nav-item dropdown">

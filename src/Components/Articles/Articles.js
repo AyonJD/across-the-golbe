@@ -9,12 +9,16 @@ import Location from '../Location/Location';
 import Groups from '../Groups/Groups';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
+import UpdatePost from '../UpdatePost/UpdatePost';
+import toast from 'react-hot-toast';
+
 
 const Articles = () => {
     const data = useContext(articleContext);
-    const articles = data.articles;
+    const { articles, setArticleId, signedInUser } = data;
     const user = useAuthState(auth)
     const articleCopy = [...articles];
+    const authUser = useAuthState(auth);
 
     useEffect(() => {
         document.addEventListener("DOMContentLoaded", () => {
@@ -22,6 +26,14 @@ const Articles = () => {
             ('[data-toggle="tooltip"]').tooltip();
         });
     }, [])
+
+    const handleArticleClick = (id) => {
+        if (authUser[0]) {
+            setArticleId(id);
+        } else {
+            toast.error('Please sign in to edit this article');
+        }
+    }
 
     return (
         <div className='container mt-3'>
@@ -36,7 +48,9 @@ const Articles = () => {
                                         <span className="badge text-bg-primary">{article?.Category}</span>
                                         <div className="d-flex justify-content-between align-items-denter">
                                             <h4 className='card-title mt-1 d-inline-block' title={article?.Title}>{article?.Title?.slice(0, 45)}{article?.Title?.length > 45 && "..."}</h4>
-                                            <h2 title='Edit' className='d-inline-block edit_button ms-3'>...</h2>
+                                            <h2 onClick={() => { handleArticleClick(article?._id) }} title='Edit' className='d-inline-block edit_button ms-3'>
+                                                {authUser[0] ? (<UpdatePost />) : "..."}
+                                            </h2>
                                         </div>
                                         <p title={article?.desc} className="card-text text-muted">{article?.desc?.slice(0, 150)}{article?.desc?.length > 150 && "..."}</p>
 
