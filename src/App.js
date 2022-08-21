@@ -8,6 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from './firebase.init';
 import CreatePost from './Components/CreatePost/CreatePost';
+import SingleArticle from './Components/Articles/SingleArticle';
 
 const articleContext = createContext();
 function App() {
@@ -55,6 +56,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/create-post' element={<CreatePost />} />
+          <Route path='/articles/:id' element={<SingleArticle />} />
         </Routes>
       </articleContext.Provider>
       <Toaster />

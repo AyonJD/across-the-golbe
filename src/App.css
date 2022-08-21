@@ -344,6 +344,29 @@ li {
     list-style: none;
 }
 
+/* Single article details */
+.single_article .main_author img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.thumbs_up {
+    color: green !important;
+    cursor: pointer;
+    height: 20px;
+    width: 30px;
+    margin-left: 5px;
+}
+
+.thumbs_down {
+    color: red !important;
+    cursor: pointer;
+    height: 20px;
+    width: 30px;
+    margin-left: 5px;
+}
+
 
 
 @media only screen and (max-width: 991px) {

@@ -72,6 +72,27 @@ const UpdatePost = () => {
             })
     }
 
+    //Handle delete post
+    const handleDeletePost = async () => {
+        fetch(`http://localhost:5000/articles/${articleId}`, {
+            method: 'Delete',
+            headers: {
+                'content-type': 'application/json',
+                // authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        })
+            .then(res => res.json())
+            .then(deleted => {
+                if (deleted.message === 'Article deleted') {
+                    toast.success('Post deleted successfully');
+                }
+                else {
+                    toast.error('Failed to Delete Post')
+                }
+            }
+            )
+    }
+
     // console.log(signedInUser)
     return (
         <>
@@ -173,6 +194,9 @@ const UpdatePost = () => {
 
 
                             <Modal.Footer>
+                                <Button variant="secondary" onClick={handleDeletePost}>
+                                    Delete Post
+                                </Button>
                                 <Button variant="secondary" onClick={handleClose}>
                                     Cancel
                                 </Button>

@@ -11,9 +11,11 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import UpdatePost from '../UpdatePost/UpdatePost';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 
 const Articles = () => {
+    const navigate = useNavigate()
     const data = useContext(articleContext);
     const { articles, setArticleId, signedInUser } = data;
     const user = useAuthState(auth)
@@ -42,7 +44,7 @@ const Articles = () => {
                     {
                         articleCopy?.reverse().map(article => {
                             return (
-                                <div key={article?._id} className="card my-4">
+                                <div key={article?._id} onClick={() => navigate(`/articles/${article?._id}`)} className="card my-4">
                                     <img src={article?.img} className="card-img-top" alt="..." />
                                     <div className="card-body">
                                         <span className="badge text-bg-primary">{article?.Category}</span>
